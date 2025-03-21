@@ -96,17 +96,44 @@ class StaticExample {
 
 Immutable nesneler, oluşturulduktan sonra değiştirilemez. **Örneğin, `String` immutable’dır**.
 
-### **Neden kullanmalıyız?**
+### **Neden Kullanmalıyız?**
 - **Thread-safe olması:** Aynı nesne birçok thread tarafından güvenli şekilde kullanılabilir.
 - **Güvenlik:** Nesnenin dışarıdan değiştirilmesini önler.
 - **Cache optimizasyonu:** Bellek yönetimini kolaylaştırır.
 
-### **Nasıl oluşturulur?**
+### **Nasıl Oluşturulur?**
 - **Tüm alanları `final` yap.**
-- **Setter metodu tanımlama.**
+- **Sadece getter metotları tanımla.**
 - **Constructor içinde değerleri ata ve değiştirilemez yap.**
 
----
+### **Örnek:**
+```java
+// Immutable Class Example
+final class ImmutablePerson {
+    private final String name;
+    private final int age;
+
+    public ImmutablePerson(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public static void main(String[] args) {
+        ImmutablePerson person = new ImmutablePerson("Alice", 30);
+        System.out.println("Name: " + person.getName() + ", Age: " + person.getAge());
+
+        // person.name = "Bob";  // Bu hata verir çünkü değişkenler final'dir.
+    }
+}
+```
 
 ## 8 – Composition and Aggregation means and differences?
 
